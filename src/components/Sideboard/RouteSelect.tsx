@@ -1,44 +1,48 @@
 import React from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { IconType } from "react-icons";
-import {
-  FiDollarSign,
-  FiHome,
-  FiLink,
-  FiPaperclip,
-  FiUsers,
-} from "react-icons/fi";
+import { FiHome, FiUsers } from "react-icons/fi";
+
+const routes: { to: string; title: string; Icon: IconType }[] = [
+  { to: "/dashboard", title: "Dashboard", Icon: FiHome },
+  { to: "/calendar  ", title: "Puntajes",  Icon: FiUsers },
+];
 
 export const RouteSelect = () => {
   return (
     <div className="space-y-1">
-      <Route Icon={FiHome} selected={true} title="Dashboard" />
-      <Route Icon={FiUsers} selected={false} title="Team" />
-      <Route Icon={FiPaperclip} selected={false} title="Invoices" />
-      <Route Icon={FiLink} selected={false} title="Integrations" />
-      <Route Icon={FiDollarSign} selected={false} title="Finance" />
+      {routes.map((r) => (
+        <RouteButton key={r.to} {...r} />
+      ))}
     </div>
   );
 };
 
-const Route = ({
-  selected,
-  Icon,
+function RouteButton({
+  to,
   title,
+  Icon,
 }: {
-  selected: boolean;
-  Icon: IconType;
+  to: string;
   title: string;
-}) => {
+  Icon: IconType;
+}) {
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const selected = pathname === to;
+
+  const base = "flex items-center gap-2 w-full rounded px-2 py-1.5 text-sm transition";
+  const active   = "bg-white text-stone-950 shadow";
+  const inactive = "hover:bg-stone-200 bg-transparent text-stone-500";
+
   return (
     <button
-      className={`flex items-center justify-start gap-2 w-full rounded px-2 py-1.5 text-sm transition-[box-shadow,_background-color,_color] ${
-        selected
-          ? "bg-white text-stone-950 shadow"
-          : "hover:bg-stone-200 bg-transparent text-stone-500 shadow-none"
-      }`}
+      onClick={() => navigate(to)}
+      className={`${base} ${selected ? active : inactive}`}
     >
+      {/* AQUÍ ya pasas un string, no una función */}
       <Icon className={selected ? "text-violet-500" : ""} />
       <span>{title}</span>
     </button>
   );
-};
+}

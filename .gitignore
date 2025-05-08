@@ -11,6 +11,9 @@ node_modules
 dist
 dist-ssr
 *.local
+build/
+.env
+VITE_API_URL=https://api.sanilab.pe
 
 # Editor directories and files
 .vscode/*

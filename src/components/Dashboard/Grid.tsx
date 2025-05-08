@@ -10,7 +10,6 @@ export const Grid = () => {
       <ActivityGraph/>
       <UsageRadar/>
       <RecentTransactions/>
-      
     </div>
   );
 };
