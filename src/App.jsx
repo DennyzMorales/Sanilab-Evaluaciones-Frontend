@@ -1,16 +1,15 @@
 import React from 'react'
-import { Dashboard } from './components/Dashboard/Dashboard'
-import { BrowserRouter,Routes,Route} from "react-router";
-import { Index } from './components';
-import CalendarPage from './components/Sideboard/Self-Assestments/CalendarPage';
-import { NotFound } from './components/NotFound';
-import {Layout } from './pages/layout'
-import { AuthLayout } from './pages/AuthLayout';
-import LoginPage from './pages/auth/LoginPage';
-import RegisterPage from './pages/auth/RegisterPage';
+import { Dashboard } from './components/Dashboard/Dashboard.tsx'
+import { Routes,Route} from "react-router";
+import CalendarPage from './components/Sideboard/Self-Assestments/CalendarPage.tsx';
+import { NotFound } from './components/NotFound.tsx';
+import {Layout } from './pages/layout.tsx'
+import { AuthLayout } from './pages/AuthLayout.tsx';
+import LoginPage from './pages/auth/LoginPage.tsx';
+import RegisterPage from './pages/auth/RegisterPage.tsx';
 import { Navigate } from 'react-router-dom';
 
-export default function home() {
+export default function Home() {
   return (
     <main className="grid gap-4 p-4 grid-cols-[1300px_1fr]">
         <div className="dashboard-layout">

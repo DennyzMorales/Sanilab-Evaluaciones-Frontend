@@ -1,6 +1,3 @@
-import React from 'react'
-import Calendar from 'react-calendar'
-import { FiCalendar } from 'react-icons/fi'
 import { CalendarHome } from './CalendarHome'
 
 export const Assestments = () => {
