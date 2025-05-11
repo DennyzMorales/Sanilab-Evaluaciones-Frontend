@@ -3,7 +3,7 @@ import { Dashboard } from './components/Dashboard/Dashboard.tsx'
 import { Routes,Route} from "react-router";
 import CalendarPage from './components/Sideboard/Self-Assestments/CalendarPage.tsx';
 import { NotFound } from './components/NotFound.tsx';
-import {Layout } from './pages/layout.tsx'
+import {Layout } from './pages/Layout.tsx'
 import { AuthLayout } from './pages/AuthLayout.tsx';
 import LoginPage from './pages/auth/LoginPage.tsx';
 import RegisterPage from './pages/auth/RegisterPage.tsx';
