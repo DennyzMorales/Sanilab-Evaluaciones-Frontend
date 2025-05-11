@@ -1,8 +1,8 @@
 import React from "react";
-import { AccountToggle } from "./AccountToggle";
-import { Search } from "./Search";
-import { RouteSelect } from "./RouteSelect";
-import { Plan } from "./Plan";
+import { AccountToggle } from "./AccountToggle.tsx";
+import { Search } from "./Search.tsx";
+import { RouteSelect } from "./RouteSelect.tsx";
+import { Plan } from "./Plan.tsx";
 
 export const Sidebar = () => {
   return (

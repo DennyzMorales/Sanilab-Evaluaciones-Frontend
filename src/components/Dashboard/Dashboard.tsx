@@ -1,7 +1,7 @@
 import React from "react";
-import { TopBar } from "./TopBar";
-import { Grid } from "./Grid";
-import CalendarPage from "../Sideboard/Self-Assestments/CalendarPage";
+import { TopBar } from "./TopBar.tsx";
+import { Grid } from "./Grid.tsx";
+import CalendarPage from "../Sideboard/Self-Assestments/CalendarPage.tsx";
 
 export const Dashboard = () => {
   return (

@@ -1,6 +1,6 @@
 import React from 'react'
-import { Dashboard } from './Dashboard/Dashboard'
-import { Sidebar } from './Sideboard/Sidebar'
+import { Dashboard } from './Dashboard/Dashboard.tsx'
+import { Sidebar } from './Sideboard/Sidebar.tsx'
 import { Link, Outlet } from 'react-router-dom';
 
 export const Index = () => {
