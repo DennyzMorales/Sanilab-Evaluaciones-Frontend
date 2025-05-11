@@ -24,10 +24,13 @@ export default function RegisterPage() {
         throw new Error('Error al registrar');
       }
 
-      const data = await response.json();
+      
+      const text = await response.text();
+      const data = text ? JSON.parse(text) : {};
       localStorage.setItem('token', data.token);
       navigate('/dashboard');
     } catch (err) {
+      console.error('Error inesperado en registro:', err);
       setError('No se pudo registrar. Intenta nuevamente.');
     }
   };

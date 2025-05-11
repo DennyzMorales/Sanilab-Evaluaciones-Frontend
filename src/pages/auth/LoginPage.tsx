@@ -15,8 +15,10 @@ export default function LoginPage() {
       body: JSON.stringify({ email, password })
     });
 
+    const text = await response.text(); // 🛡️ más seguro
+    const data = text ? JSON.parse(text) : {}; // evita error si está vacío
+
     if (response.ok) {
-      const data = await response.json();
       localStorage.setItem('token', data.token);
       navigate('/dashboard');
     } else {
