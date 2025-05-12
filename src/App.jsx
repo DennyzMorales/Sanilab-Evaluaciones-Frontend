@@ -8,6 +8,7 @@ import { AuthLayout } from './pages/AuthLayout.tsx';
 import LoginPage from './pages/auth/LoginPage.tsx';
 import RegisterPage from './pages/auth/RegisterPage.tsx';
 import { Navigate } from 'react-router-dom';
+import Assestments from '../src/components/Sideboard/Self-Assestments/Assestments.tsx'
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
               <Route index element={<Dashboard />} />
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="calendar" element={<CalendarPage />} />
+              <Route path="assestment" element={<Assestments />} />
               <Route path="*" element={<NotFound />} />
           </Route>
           <Route path="/auth" element={<AuthLayout />}>
