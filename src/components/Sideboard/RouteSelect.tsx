@@ -7,6 +7,7 @@ const routes: { to: string; title: string; Icon: IconType }[] = [
   { to: "/dashboard", title: "Dashboard", Icon: FiHome },
   { to: "/calendar  ", title: "Puntajes",  Icon: FiUsers },
   { to: "/assestment  ", title: "Autoevaluacion",  Icon: FiUsers },
+  { to: "/assestment  ", title: "Crear Autoevaluacion",  Icon: FiUsers },
 ];
 
 export const RouteSelect = () => {
