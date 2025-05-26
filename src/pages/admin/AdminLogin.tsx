@@ -18,26 +18,21 @@ export default function LoginAdminPage() {
       body: JSON.stringify({ email, password }),
     });
 
-    if (!response.ok) {
-      let errorMessage = 'Error al iniciar sesión';
-      try {
-        const errorData = await response.json();
-        errorMessage = errorData.message || errorMessage;
-      } catch {
-        // La respuesta no es JSON, dejamos el mensaje por defecto
-      }
-      throw new Error(errorMessage);
+    const text = await response.text(); // evita error si no hay cuerpo
+    const data = text ? JSON.parse(text) : {};
+
+    if (response.ok) {
+      localStorage.setItem('token', data.token);
+      navigate('/dashboard'); // o '/dashboard-admin' si tienes esa ruta
+    } else {
+      setError(data.message || 'Credenciales incorrectas o error en el servidor.');
     }
-
-    const data = await response.json();
-    localStorage.setItem('token', data.token);
-
-    navigate('/dashboard'); // Cambia esta ruta si es necesario
   } catch (err) {
     console.error('Error al iniciar sesión:', err);
-    setError(err.message || 'Credenciales incorrectas o error en el servidor.');
+    setError('Error inesperado al iniciar sesión.');
   }
 };
+
 
 
   return (

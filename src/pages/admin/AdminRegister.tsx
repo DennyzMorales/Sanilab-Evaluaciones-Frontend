@@ -8,7 +8,7 @@ export default function RegisterAdminPage() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  const handleRegister = async (e: React.FormEvent) => {
+    const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
 
@@ -19,18 +19,20 @@ export default function RegisterAdminPage() {
         body: JSON.stringify({ nombre, email, password })
       });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Error al registrar');
-      }
+      const text = await response.text();
+      const data = text ? JSON.parse(text) : {};
 
-      // Registro exitoso, redirigir al login o dashboard
-      navigate('/admin/login'); // o '/dashboard-admin'
+      if (response.ok) {
+        navigate('/admin/login'); // o '/dashboard-admin'
+      } else {
+        setError(data.message || 'Error al registrar');
+      }
     } catch (err) {
       console.error('Error al registrar admin:', err);
       setError('No se pudo registrar el administrador.');
     }
   };
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
