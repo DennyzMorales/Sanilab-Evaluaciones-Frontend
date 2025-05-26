@@ -8,30 +8,37 @@ export default function LoginAdminPage() {
   const [error, setError] = useState('');
 
   const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError('');
+  e.preventDefault();
+  setError('');
 
-    try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/login-admin`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
-      });
+  try {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/login-admin`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
 
-      if (!response.ok) {
+    if (!response.ok) {
+      let errorMessage = 'Error al iniciar sesión';
+      try {
         const errorData = await response.json();
-        throw new Error(errorData.message || 'Error al iniciar sesión');
+        errorMessage = errorData.message || errorMessage;
+      } catch {
+        // La respuesta no es JSON, dejamos el mensaje por defecto
       }
-
-      const data = await response.json();
-      localStorage.setItem('token', data.token);
-
-      navigate('/dashboard-admin'); // Cambia esto según tu ruta
-    } catch (err) {
-      console.error('Error al iniciar sesión:', err);
-      setError('Credenciales incorrectas o error en el servidor.');
+      throw new Error(errorMessage);
     }
-  };
+
+    const data = await response.json();
+    localStorage.setItem('token', data.token);
+
+    navigate('/dashboard'); // Cambia esta ruta si es necesario
+  } catch (err) {
+    console.error('Error al iniciar sesión:', err);
+    setError(err.message || 'Credenciales incorrectas o error en el servidor.');
+  }
+};
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
