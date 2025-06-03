@@ -12,14 +12,14 @@ export default function LoginPage() {
     const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password })
+      body: JSON.stringify({ email, password }),
+      credentials: 'include' // ✅ para enviar/recibir la cookie
     });
 
     const text = await response.text(); // 🛡️ más seguro
     const data = text ? JSON.parse(text) : {}; // evita error si está vacío
 
     if (response.ok) {
-      localStorage.setItem('token', data.token);
       navigate('/dashboard');
     } else {
       alert('Login fallido');
